@@ -1,0 +1,73 @@
+/* Minimal LSU theme for the forms portal */
+:root{
+    --lsu-purple:#461D7C;
+    --lsu-gold:#FDD023;
+    --ink:#2b2b2b;
+    --ink-muted:#6c757d;
+    --bg:#f7f7fb;
+    --card:#ffffff;
+  }
+  
+  html,body{height:100%;}
+  body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+  }
+  
+  /* Typography helpers */
+  .font-weight-600{font-weight:600;}
+  .container-narrow{max-width: 900px;}
+  
+  /* Navbar */
+  .lsu-navbar{
+    background: var(--lsu-purple);
+  }
+  .navbar-brand{letter-spacing:.2px;}
+  .navbar-dark .navbar-nav .nav-link{
+    color: rgba(255,255,255,.9);
+  }
+  .navbar-dark .navbar-nav .nav-link:hover{
+    color: #fff;
+  }
+  
+  /* Hero */
+  .hero{
+    background: linear-gradient(0deg, #ffffff 0%, #ffffff 60%, rgba(70,29,124,.05) 100%);
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+  
+  /* Cards */
+  .lsu-card{
+    background: var(--card);
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  }
+  
+  /* Buttons */
+  .btn-primary{
+    background: var(--lsu-purple);
+    border-color: var(--lsu-purple);
+  }
+  .btn-primary:hover{
+    background: #3b176f;
+    border-color: #3b176f;
+  }
+  .btn-outline-primary{
+    color: var(--lsu-purple);
+    border-color: var(--lsu-purple);
+  }
+  .btn-outline-primary:hover{
+    color:#fff;
+    background: var(--lsu-purple);
+    border-color: var(--lsu-purple);
+  }
+  
+  /* Footer */
+  .site-footer{
+    background:#0f0f10;
+    color:#e9ecef;
+  }
+  .site-footer a{color:#e9ecef; text-decoration: underline;}
+  .site-footer a:hover{opacity:.9;}

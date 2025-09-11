@@ -1,27 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>LSU PT — Forms Portal</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Use your local Bootstrap + style if you have them -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <style>
-    :root { --lsu-purple:#461D7C; --lsu-gold:#FDD023; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    .navbar { background: var(--lsu-purple); }
-    .navbar a, .navbar-brand { color:#fff !important; }
-    .btn-gold { background:var(--lsu-gold); border:none; color:#000; }
-    .btn-outline { border:2px solid var(--lsu-purple); color:var(--lsu-purple); background:#fff; }
-    .btn-outline:hover { background:var(--lsu-purple); color:#fff; }
-    footer { background:#111; color:#eee; }
-    .container-narrow { max-width: 880px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap (use your local copy) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+  <!-- Lightweight LSU theme overrides -->
+  <link rel="stylesheet" href="css/forms.css" />
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark">
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-dark lsu-navbar shadow-sm">
   <div class="container">
-    <a class="navbar-brand" href="index.html">LSU PT — Forms</a>
+    <a class="navbar-brand font-weight-600" href="index.html">LSU PT — Forms</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,42 +29,54 @@
   </div>
 </nav>
 
-<main class="container container-narrow py-5">
-  <header class="mb-4">
-    <h1 class="h2">Department of Physical Therapy — Forms Portal</h1>
-    <p class="text-muted mb-0">This page provides access to screening forms used by LSU PT. Placeholder text for now; we’ll swap in any official copy later.</p>
-  </header>
-
-  <div class="card mb-3">
-    <div class="card-body d-flex align-items-center justify-content-between">
-      <div>
-        <h2 class="h4 mb-1">SLUMS (Saint Louis University Mental Status)</h2>
-        <p class="mb-0 text-muted">Cognitive screening form.</p>
-      </div>
-      <a class="btn btn-outline" href="slums.html">Open SLUMS</a>
-    </div>
+<!-- HERO -->
+<header class="hero">
+  <div class="container container-narrow py-5">
+    <h1 class="display-5 mb-2">Department of Physical Therapy — Forms Portal</h1>
+    <p class="text-muted mb-0">
+      Access screening forms used by LSU PT. Placeholder text/images for now; we’ll swap in official copy later.
+    </p>
   </div>
+</header>
 
-  <div class="card">
-    <div class="card-body d-flex align-items-center justify-content-between">
-      <div>
-        <h2 class="h4 mb-1">MoCA (Montreal Cognitive Assessment)</h2>
-        <p class="mb-0 text-muted">Record MoCA domain scores and notes. (No test items here.)</p>
+<!-- FORMS LIST -->
+<main class="container container-narrow my-4">
+  <div class="row g-3">
+    <div class="col-12">
+      <div class="card lsu-card">
+        <div class="card-body d-flex align-items-start justify-content-between flex-column flex-md-row">
+          <div class="pr-md-4">
+            <h2 class="h4 mb-1">SLUMS (Saint Louis University Mental Status)</h2>
+            <p class="text-muted mb-3 mb-md-0">Cognitive screening form.</p>
+          </div>
+          <a class="btn btn-outline-primary btn-lg" href="slums.html">Open SLUMS</a>
+        </div>
       </div>
-      <a class="btn btn-outline" href="moca.html">Open MoCA</a>
+    </div>
+
+    <div class="col-12">
+      <div class="card lsu-card">
+        <div class="card-body d-flex align-items-start justify-content-between flex-column flex-md-row">
+          <div class="pr-md-4">
+            <h2 class="h4 mb-1">MoCA (Montreal Cognitive Assessment)</h2>
+            <p class="text-muted mb-3 mb-md-0">Record MoCA domain scores and notes. (No test items here.)</p>
+          </div>
+          <a class="btn btn-outline-primary btn-lg" href="moca.html">Open MoCA</a>
+        </div>
+      </div>
     </div>
   </div>
 </main>
 
-<footer class="py-4">
-  <div class="container container-narrow small">
-    <div class="d-flex flex-column flex-sm-row justify-content-between">
-      <span>© LSU Health — Department of Physical Therapy</span>
-      <span>Contact: <a href="mailto:ahpt@lsuhsc.edu">ahpt@lsuhsc.edu</a> • (504) 568-4288</span>
-    </div>
+<!-- FOOTER -->
+<footer class="site-footer py-4">
+  <div class="container container-narrow small d-flex flex-column flex-sm-row justify-content-between align-items-start">
+    <span>© LSU Health — Department of Physical Therapy</span>
+    <span>Contact: <a href="mailto:ahpt@lsuhsc.edu">ahpt@lsuhsc.edu</a> • (504) 568-4288</span>
   </div>
 </footer>
 
+<!-- JS -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
