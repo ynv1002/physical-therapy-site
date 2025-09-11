@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>MoCA — LSU PT Forms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Local Bootstrap + your light LSU theme -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/forms.css" />
+
+  <style>
+    .container-narrow { max-width: 900px; }
+    .required::after { content:" *"; color:#c00; }
+    .score-pill { font-weight:700; }
+    .domain-grid .form-group { margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV (consistent) -->
+<nav class="navbar navbar-expand-lg navbar-dark lsu-navbar shadow-sm">
+  <div class="container">
+    <a class="navbar-brand font-weight-600" href="index.html">LSU PT — Forms</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="slums.html">SLUMS</a></li>
+        <li class="nav-item"><a class="nav-link active" href="moca.html">MoCA</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="hero">
+  <div class="container container-narrow py-5">
+    <h1 class="h3 mb-2">MoCA — Score Entry</h1>
+    <p class="text-muted mb-0">
+      Record MoCA® domain scores and notes for documentation. This page does not include test items.
+    </p>
+  </div>
+</header>
+
+<main class="container container-narrow my-4">
+  <!-- Live score + interpretation -->
+  <div class="alert lsu-card mb-4">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+      <div class="mb-3 mb-md-0">
+        <div class="small text-muted">Live score</div>
+        <div class="h5 mb-1">
+          Raw: <span id="rawTotal" class="score-pill">0</span> / 30
+          <span class="mx-2">•</span>
+          Adjusted: <span id="adjTotal" class="score-pill">0</span> / 30
+          <span id="liveInterp" class="ml-3 badge badge-secondary">—</span>
+        </div>
+        <div class="small text-muted">
+          Education adjustment: +1 point if ≤ 12 years of education (as commonly used). Adjusted max is still 30.
+          A common cutoff is ≥ 26 as “within normal limits”—use clinical judgment and official guidance.
+        </div>
+      </div>
+      <div>
+        <button type="button" class="btn btn-outline-primary mr-2" onclick="window.print()">Print</button>
+        <button type="button" class="btn btn-outline-secondary" id="clearBtn">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <!-- Replace action with your Formspree endpoint -->
+  <form method="POST" action="https://formspree.io/f/YOUR-FORM-ID" accept-charset="UTF-8" class="lsu-card p-3 p-md-4">
+    <!-- Optional post-submit redirect -->
+    <input type="hidden" name="_redirect" value="thanks.html" />
+
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">Patient Info</legend>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="required">Patient Name</label>
+          <input class="form-control" name="patient_name" required />
+        </div>
+        <div class="form-group col-md-3">
+          <label>Date</label>
+          <input type="date" class="form-control" name="date" />
+        </div>
+        <div class="form-group col-md-3">
+          <label>DOB</label>
+          <input type="date" class="form-control" name="dob" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>MRN (optional)</label>
+          <input class="form-control" name="mrn" />
+        </div>
+        <div class="form-group col-md-3">
+          <label class="required">Education (years)</label>
+          <input type="number" min="0" max="60" class="form-control" id="eduYears" name="education_years" required />
+        </div>
+        <div class="form-group col-md-6">
+          <label>Clinician</label>
+          <input class="form-control" name="clinician" />
+        </div>
+      </div>
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md-6 mb-2">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="autoEduAdj" checked />
+            <label class="custom-control-label" for="autoEduAdj">
+              Auto-apply education adjustment when ≤ 12 years
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Domain Scores -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">Domain Scores</legend>
+
+      <div class="row domain-grid">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Visuospatial / Executive (0–5)</label>
+            <input type="number" min="0" max="5" class="form-control seg" name="visuospatial_executive" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Naming (0–3)</label>
+            <input type="number" min="0" max="3" class="form-control seg" name="naming" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Attention (0–6)</label>
+            <input type="number" min="0" max="6" class="form-control seg" name="attention" />
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Language (0–3)</label>
+            <input type="number" min="0" max="3" class="form-control seg" name="language" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Abstraction (0–2)</label>
+            <input type="number" min="0" max="2" class="form-control seg" name="abstraction" />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Delayed Recall (0–5)</label>
+            <input type="number" min="0" max="5" class="form-control seg" name="delayed_recall" />
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Orientation (0–6)</label>
+            <input type="number" min="0" max="6" class="form-control seg" name="orientation" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Raw Total (auto, 0–30)</label>
+          <input class="form-control" name="raw_total" id="rawField" readonly />
+        </div>
+        <div class="form-group col-md-4">
+          <label>Education Adjustment Applied?</label>
+          <input class="form-control" name="education_adjustment" id="adjApplied" readonly />
+        </div>
+        <div class="form-group col-md-4">
+          <label>Adjusted Total (auto, 0–30)</label>
+          <input class="form-control" name="adjusted_total" id="adjField" readonly />
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-outline-primary" id="recalcBtn">Recalculate</button>
+    </fieldset>
+
+    <!-- Notes & Consent -->
+    <div class="form-group">
+      <label>Clinician Notes</label>
+      <textarea class="form-control" name="clinician_notes" rows="4" placeholder="Observations, accommodations, patient effort, follow-up plan…"></textarea>
+    </div>
+
+    <div class="form-group form-check my-3">
+      <input type="checkbox" class="form-check-input" id="consent" required />
+      <label class="form-check-label required" for="consent">
+        I confirm this information is recorded for clinical screening purposes.
+      </label>
+    </div>
+
+    <button class="btn btn-primary btn-lg">Submit MoCA Entry</button>
+
+    <p class="text-muted small mt-4 mb-0">
+      MoCA® (Montreal Cognitive Assessment) is a protected instrument. This page records scores only and does not reproduce test items. Use official materials and training as required.
+    </p>
+  </form>
+</main>
+
+<!-- FOOTER (consistent) -->
+<footer class="site-footer py-4">
+  <div class="container container-narrow small d-flex flex-column flex-sm-row justify-content-between align-items-start">
+    <span>© LSU Health — Department of Physical Therapy</span>
+    <span>Contact: <a href="mailto:ahpt@lsuhsc.edu">ahpt@lsuhsc.edu</a> • (504) 568-4288</span>
+  </div>
+</footer>
+
+<!-- JS (lightweight; no jQuery required for logic) -->
+<script>
+  const segInputs = Array.from(document.querySelectorAll('.seg'));
+  const eduYearsEl = document.getElementById('eduYears');
+  const autoAdjEl = document.getElementById('autoEduAdj');
+  const rawField = document.getElementById('rawField');
+  const adjField = document.getElementById('adjField');
+  const adjApplied = document.getElementById('adjApplied');
+  const rawTotalEl = document.getElementById('rawTotal');
+  const adjTotalEl = document.getElementById('adjTotal');
+  const liveInterp = document.getElementById('liveInterp');
+
+  function clamp(n, min, max){ n = Number(n)||0; return Math.max(min, Math.min(max, n)); }
+
+  function sumDomains(){
+    let sum = 0;
+    sum += clamp(segInputs.find(i=>i.name==='visuospatial_executive')?.value, 0, 5);
+    sum += clamp(segInputs.find(i=>i.name==='naming')?.value, 0, 3);
+    sum += clamp(segInputs.find(i=>i.name==='attention')?.value, 0, 6);
+    sum += clamp(segInputs.find(i=>i.name==='language')?.value, 0, 3);
+    sum += clamp(segInputs.find(i=>i.name==='abstraction')?.value, 0, 2);
+    sum += clamp(segInputs.find(i=>i.name==='delayed_recall')?.value, 0, 5);
+    sum += clamp(segInputs.find(i=>i.name==='orientation')?.value, 0, 6);
+    return clamp(sum, 0, 30);
+  }
+
+  function interpretMoCA(adjusted){
+    if (adjusted === null || adjusted === undefined) return { label:'—', badge:'badge-secondary' };
+    // Commonly cited cutoff >=26 (context- and population-dependent)
+    if (adjusted >= 26) return { label:'Within common normal range (≥26)', badge:'badge-success' };
+    return { label:'Below common cutoff (26)', badge:'badge-warning' };
+  }
+
+  function recalc(){
+    const raw = sumDomains();
+    let addOne = false;
+
+    const edu = Number(eduYearsEl.value);
+    if (autoAdjEl.checked && Number.isFinite(edu) && edu <= 12) addOne = true;
+
+    let adjusted = raw + (addOne ? 1 : 0);
+    adjusted = Math.min(adjusted, 30);
+
+    rawField.value = raw;
+    adjField.value = adjusted;
+    adjApplied.value = addOne ? 'Yes (+1 for ≤12 yrs)' : 'No';
+
+    rawTotalEl.textContent = raw;
+    adjTotalEl.textContent = adjusted;
+
+    const {label, badge} = interpretMoCA(adjusted);
+    liveInterp.textContent = label;
+    liveInterp.className = 'ml-3 badge ' + badge;
+  }
+
+  // Wire events
+  segInputs.forEach(el => el.addEventListener('input', recalc));
+  eduYearsEl.addEventListener('input', recalc);
+  autoAdjEl.addEventListener('change', recalc);
+  document.getElementById('recalcBtn').addEventListener('click', recalc);
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    document.querySelector('form').reset();
+    rawField.value = '';
+    adjField.value = '';
+    adjApplied.value = '';
+    rawTotalEl.textContent = '0';
+    adjTotalEl.textContent = '0';
+    liveInterp.textContent = '—';
+    liveInterp.className = 'ml-3 badge badge-secondary';
+  });
+
+  // Initial paint
+  recalc();
+</script>
+
+<!-- If you have local JS files; page works without them -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
