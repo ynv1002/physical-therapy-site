@@ -71,3 +71,20 @@
   }
   .site-footer a{color:#e9ecef; text-decoration: underline;}
   .site-footer a:hover{opacity:.9;}
+
+  /* Navbar polish */
+.navbar-nav{ list-style:none; margin:0; padding:0; }
+.navbar-nav .nav-item + .nav-item{ margin-left:.75rem; }
+.navbar-dark .navbar-nav .nav-link.active{ color:#fff; font-weight:600; }
+
+.navbar-toggler{ border-color: rgba(255,255,255,.35); }
+.navbar-dark .navbar-toggler-icon{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Hero spacing */
+.hero{ padding-top: .75rem; padding-bottom: .75rem; }
+.hero .display-5{ font-weight:700; }
+
+/* Card rounding & separators */
+.lsu-card{ border-radius: 16px; }
