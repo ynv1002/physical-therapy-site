@@ -83,8 +83,8 @@
           <input type="date" class="form-control" name="date" />
         </div>
         <div class="form-group col-md-3">
-          <label>DOB</label>
-          <input type="date" class="form-control" name="dob" />
+          <label>Age</label>
+          <input type="number" class="form-control" name="age" />
         </div>
       </div>
 
@@ -96,10 +96,6 @@
         <div class="form-group col-md-3">
           <label class="required">Education (years)</label>
           <input type="number" min="0" max="60" class="form-control" id="eduYears" name="education_years" required />
-        </div>
-        <div class="form-group col-md-6">
-          <label>Clinician</label>
-          <input class="form-control" name="clinician" />
         </div>
       </div>
 
@@ -185,10 +181,6 @@
     </fieldset>
 
     <!-- Notes & Consent -->
-    <div class="form-group">
-      <label>Clinician Notes</label>
-      <textarea class="form-control" name="clinician_notes" rows="4" placeholder="Observations, accommodations, patient effort, follow-up plan…"></textarea>
-    </div>
 
     <div class="form-group form-check my-3">
       <input type="checkbox" class="form-check-input" id="consent" required />
@@ -292,5 +284,46 @@
 <!-- If you have local JS files; page works without them -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!-- POPUP MODAL -->
+
+<div class="modal fade" id="ackModal" tabindex="-1" role="dialog" aria-labelledby="ackTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ackTitle">Acknowledgment Required</h5>
+      </div>
+      <div class="modal-body">
+        <p>
+          This form is for testing purposes only. No data entered here will be collected or stored.</p>
+        <p class="mb-0">
+          Please confirm you understand before proceeding.
+        </p>
+	<div class="modal-footer">
+        <button id="ackBtn" type="button" class="btn btn-primary">I Acknowledge</button>
+        <button id="decBtn" type="button" class="btn btn-secondary">I do not Acknowledge</button>
+      </div>
+
+
+      </div>
+          </div>
+  </div>
+</div>
+
+
+<script>
+  // Show modal on load
+  window.addEventListener('load', () => {
+    $('#ackModal').modal('show');
+  });
+
+  // Close only when user clicks acknowledge
+  document.getElementById('ackBtn').addEventListener('click', () => {
+    $('#ackModal').modal('hide');
+  });
+document.getElementById('decBtn').addEventListener('click', () => {
+    // Change this URL to wherever you want to send users
+    window.location.href = "index.html"; 
+  });
+</script>
 </body>
 </html><script>window.scrollTo(0, 0); setTimeout(function() { window.scrollTo(0, 0); },200)</script>
