@@ -76,17 +76,13 @@
       <legend class="w-auto px-2">Patient Info</legend>
 
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label class="required">Patient Name</label>
-          <input class="form-control" name="patient_name" required />
-        </div>
-        <div class="form-group col-md-3">
+                <div class="form-group col-md-3">
           <label>Date</label>
           <input type="date" class="form-control" name="date" />
         </div>
         <div class="form-group col-md-3">
-          <label>DOB</label>
-          <input type="date" class="form-control" name="dob" />
+          <label>Age</label>
+          <input type="number" class="form-control" name="dob" />
         </div>
       </div>
 
@@ -103,11 +99,7 @@
             <option value="more_than_hs">More than high school</option>
           </select>
         </div>
-        <div class="form-group col-md-5">
-          <label>Clinician</label>
-          <input class="form-control" name="clinician" />
-        </div>
-      </div>
+              </div>
     </fieldset>
 
     <!-- Scoring -->
@@ -285,5 +277,46 @@
 
 <!-- If you have local JS, include it; otherwise the page still works without it -->
 <script src="js/bootstrap.min.js"></script>
+
+<!-- POPUP MODAL -->
+
+<div class="modal fade" id="ackModal" tabindex="-1" role="dialog" aria-labelledby="ackTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ackTitle">Acknowledgment Required</h5>
+      </div>
+      <div class="modal-body">
+        <p>This form is for testing purposes only. No data entered here will be collected or stored.</p>
+        <p class="mb-0">Please confirm you understand before proceeding.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="ackBtn" type="button" class="btn btn-primary">I Acknowledge</button>
+        <button id="decBtn" type="button" class="btn btn-secondary">I do not Acknowledge</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+  // Show modal on load
+  window.addEventListener('load', () => {
+    $('#ackModal').modal('show');
+  });
+
+  // Close only when user clicks acknowledge
+  document.getElementById('ackBtn').addEventListener('click', () => {
+    $('#ackModal').modal('hide');
+  });
+document.getElementById('decBtn').addEventListener('click', () => {
+    // Change this URL to wherever you want to send users
+    window.location.href = "index.html"; 
+  });
+</script>
+
 </body>
 </html>
